@@ -1,0 +1,21 @@
+Sub RunThird()
+'
+' Macro11 Macro
+'
+
+'
+    Sheets("Ready for Instantly").Select
+    Columns("A:G").Select
+    Selection.Copy
+    Workbooks.Add
+    ActiveSheet.Paste
+    Range("A1").Select
+    
+    Dim lastName As Variant
+    
+    lastName = InputBox("Who is this list for?", "Rep's Name", "Last name only")
+    
+    ActiveWorkbook.SaveAs FileName:=lastName & " - Ready for Instantly - " & Format(Date, "MM-DD-YY") & ".csv"
+    
+    
+End Sub
