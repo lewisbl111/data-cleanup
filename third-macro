@@ -15,7 +15,9 @@ Sub RunThird()
     
     lastName = InputBox("Who is this list for?", "Rep's Name", "Last name only")
     
-    ActiveWorkbook.SaveAs FileName:=lastName & " - Ready for Instantly - " & Format(Date, "MM-DD-YY") & ".csv"
+    ActiveWorkbook.SaveAs FileName:=lastName & " - Ready for Instantly - " & Format(Date, "MM-DD-YY")
+    
+    msgbox ("Save new file as a .csv")
     
     
 End Sub
