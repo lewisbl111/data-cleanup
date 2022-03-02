@@ -1,0 +1,47 @@
+Sub RunSecond()
+'
+' Macro7 Macro
+'
+CarryOn = MsgBox("Are the emails cleaned and pasted in Column A of Paste Cleaned Emails Here sheet?", vbYesNo)
+If CarryOn = vbYes Then
+    Sheets("Cleaned Data").Select
+    
+    Dim lastRow As Long
+    lastRow = Cells(Rows.Count, 4).End(xlUp).Row
+    
+    Columns("E:E").Select
+    Selection.Insert Shift:=xlToRight, CopyOrigin:=xlFormatFromLeftOrAbove
+    Range("E1").Select
+    ActiveCell.FormulaR1C1 = "Cleaned Emails"
+    Range("E2").Select
+    ActiveCell.FormulaR1C1 = "=VLOOKUP(RC[-1],'Paste Cleaned Emails Here'!C[-4],1,FALSE)"
+    Range("E2").Select
+    Selection.AutoFill Destination:=Range("E2:E" & lastRow)
+    Range("E2:E" & lastRow).Select
+    Columns("E:E").Select
+    Selection.AutoFilter
+    ActiveSheet.Range("$E$1:$E$" & lastRow).AutoFilter Field:=1, Criteria1:="<>#N/A", Operator:=xlFilterValues
+    Range("A1:G" & lastRow).Select
+    Selection.Copy
+    Sheets.Add After:=ActiveSheet
+    ActiveSheet.Paste
+    Application.CutCopyMode = False
+    ActiveSheet.Name = "Do Final Check"
+    Columns("D:D").Select
+    Selection.Delete Shift:=xlLeft
+    
+    Range("D1").Select
+    ActiveCell.FormulaR1C1 = "Email"
+    
+    Sheets.Add After:=ActiveSheet
+
+    ActiveSheet.Name = "Ready for Instantly"
+    
+    Sheets("Do Final Check").Select
+    
+End If
+'
+    
+MsgBox "Do a final run through of all First Names and Company Names. Make sure all city names and state names are filled in. Then run Third macro."
+    
+End Sub
