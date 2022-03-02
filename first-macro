@@ -14,7 +14,7 @@ Sub RunFirst()
         MsgBox "Column D is not right! It should be Email 1", vbCritical
         Exit Sub
     Else
-        'MsgBox "Everything looks great! Macro will continue."
+        MsgBox "Everything looks great! Macro will continue."
     End If
     
     ActiveSheet.Name = "Raw Data"
@@ -123,6 +123,9 @@ Sub RunFirst()
     ActiveSheet.Name = "Paste Cleaned Emails Here"
     Sheets("Cleaned Data").Select
     
+    Dim compName as string
+    compName = Range("A2").value
+    
     wkbkName = ActiveWorkbook.Name
     
 
@@ -154,9 +157,10 @@ Sub RunFirst()
     Sheets("Sheet1").Select
     Application.CutCopyMode = False
     ActiveWindow.SelectedSheets.Delete
-    Range("A1").Select
+    Range("C2").Select
     
-    ActiveWorkbook.SaveAs FileName:="Ready for Email List Verify2 - " & Format(Date, "MM-DD-YY hhnnss")
+    
+    ActiveWorkbook.SaveAs FileName:=compName & " Ready for Email List Verify - " & Format(Date, "MM-DD-YY")
     
     MsgBox "Upload emails to EmailListVerify.  Once done, add them to the Paste Cleaned Emails Here sheet.  Then run Second macro."
     
