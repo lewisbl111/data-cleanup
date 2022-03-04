@@ -119,7 +119,7 @@ Sub RunFirst()
     Range("A1").Select
     
     Sheets.Add After:=ActiveSheet
-    Sheets("Sheet2").Select
+    Sheets("Sheet3").Select
     ActiveSheet.Name = "Paste Cleaned Emails Here"
     Sheets("Cleaned Data").Select
     
